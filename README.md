@@ -11,6 +11,28 @@
 * **Temel Teknoloji:** Python (Flask)
 * **Mimari:** İnteraktif Web Uygulaması (Laboratuvar Simülasyonları)
 
+<h3 align="center">⚙️ CyberGuard Teknoloji Yığını (Tech Stack) 🛡️</h3>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Badge" />
+  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask Badge" />
+  
+  <img src="https://img.shields.io/badge/Security-Encryption%20Simulations-A80000?style=for-the-badge&logo=spyfall&logoColor=white" alt="Security Badge" />
+  <img src="https://img.shields.io/badge/Algorithms-Base64%20%26%20ROT13-1E90FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTggMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE4IDkuMjhjMCA0LjkyLTcgNi45Mi02LjczIDYuOTJzLTguNzYgNS43My02LjczIDUuNzNzLTkuMzMgNS43My02LjczIDUuNzMiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="Algorithm Badge" />
+  
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Badge" />
+  <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap Badge" />
+</p>
+
+<h3 align="center">🔬 Laboratuvar Odakları 💡</h3>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Vulnerability-SQL%20Injection%20(SQLi)-FFD700?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTggMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE1IDJINmE0IDQgMCAwMC00IDR2NkE0IDQgMCAwMDUgMTZIMTVBNC4wMDIgNC4wMDIgMCAwMTE5IDExVjZBNC4wMDIgNC4wMDIgMCAwMTE1IDJ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="SQLi Badge" />
+  <img src="https://img.shields.io/badge/Vulnerability-XSS%20(Cross--Site%20Scripting)-FF4500?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTggMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N3ZyI+PHBhdGggZD0iTTE1IDJINmE0IDQgMCAwMC00IDR2NkE0IDQgMCAwMDUgMTZIMTVBNC4wMDIgNC4wMDIgMCAwMTE5IDExVjZBNC4wMDIgNC4wMDIgMCAwMTE1IDJ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="XSS Badge" />
+  <img src="https://img.shields.io/badge/Focus-Phishing%20%26%20Password%20Analysis-00CED1?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTggMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE3LjUgOS41TDEzLjggNS44QyAxMi43IDQuNyAxMC4zIDQuNyA5LjIgNS44TDUuNSA5LjVMMTguMiAxNi44TDE3LjUgOS41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" alt="Analysis Badge" />
+</p>
+
 ## ✨ Kilit Özellikler ve Öğrenim Alanları (7 Araç)
 
 CyberGuard, öğrencilerin ve yeni başlayanların en kritik siber güvenlik konularını uygulamalı olarak deneyimleyebileceği 7 ayrı laboratuvar aracı sunar.
