@@ -1,36 +1,48 @@
 # 🛡️ CyberGuard: Siber Güvenlik Eğitim Laboratuvarı
 
-**CyberGuard**, siber güvenlik temellerini uygulamalı ve interaktif bir şekilde öğretmek için **Python (Flask)** ile geliştirilmiş kapsamlı bir web platformudur. Amacımız, kullanıcıların hem yaygın saldırı vektörlerini (SQLi, XSS) deneyimlemesini hem de güçlü savunma mekanizmalarını öğrenmesini sağlamaktır.
+## 🌟 Proje Hakkında
 
-## ✨ Kilit Özellikler (7 Laboratuvar Aracı)
+**CyberGuard**, siber güvenlik temellerini uygulamalı olarak öğretmeyi amaçlayan interaktif bir web eğitim platformudur. **Python (Flask)** kullanılarak geliştirilen bu sistem, kullanıcıların güvenli kodlama bilincini artırmak amacıyla hem temel saldırı vektörlerini (SQLi, XSS) hem de temel savunma araçlarını deneyimlemesini sağlar.
 
-Proje, kullanıcıların farklı siber güvenlik senaryolarını test edebileceği 7 temel aracı barındırır:
+## 👨‍💻 Geliştirici ve Ortam
 
-| İkon | Özellik Adı | Açıklama |
-| :---: | :--- | :--- |
-| 🔑 | **Şifre Analizörü** | Girilen şifrenin karmaşıklığını ve modern araçlarla tahmini kırılma süresini hesaplar. |
-| 🎣 | **Phishing Avcısı** | Kullanıcının oltalama (phishing) e-postalarını doğru tespit etme yeteneğini test eden bir eğitim modülü. |
-| 🚨 | **Sızıntı Kontrolü** | Bir e-posta adresinin simüle edilmiş (simulated) veri ihlalleri listesinde yer alıp almadığını sorgular. |
-| 🕵️‍♂️ | **Kripto Lab** | Base64 ve ROT13 gibi temel şifreleme ve çözme tekniklerini uygulamalı olarak gösterir. |
-| 💉 | **SQL Injection (SQLi) Simülasyonu** | Güvenlik açığı bulunan bir giriş panelini kullanarak temel SQL Injection saldırılarının mantığını ve etkilerini öğretir. |
-| 🕷️ | **XSS (Cross-Site Scripting) Simülasyonu** | Zararlı istemci taraflı kodun bir web sayfasına nasıl enjekte edildiğini ve tarayıcıda nasıl çalıştığını gösterir. |
-| 👣 | **Dijital Parmak İzi** | Kullanıcının tarayıcı, işletim sistemi ve IP adresi gibi dijital ayak izi bilgilerini analiz eder. |
+* **Geliştirici:** Hüseyin Akın
+* **Kurum:** Torul Meslek Yüksekokulu (Torul MYO)
+* **Temel Teknoloji:** Python (Flask)
+* **Mimari:** İnteraktif Web Uygulaması (Laboratuvar Simülasyonları)
+
+## ✨ Kilit Özellikler ve Öğrenim Alanları (7 Araç)
+
+CyberGuard, öğrencilerin ve yeni başlayanların en kritik siber güvenlik konularını uygulamalı olarak deneyimleyebileceği 7 ayrı laboratuvar aracı sunar.
+
+| İkon | Özellik Adı | Amacı ve Siber Güvenlikteki Rolü | Konu Alanı |
+| :---: | :--- | :--- | :--- |
+| 🔑 | **Şifre Analizörü** | Kullanıcıların seçtiği şifrenin gücünü ve tahmini kırılma süresini hesaplayarak güvenli şifre bilinci oluşturur. | **Kimlik Doğrulama Güvenliği** |
+| 🎣 | **Phishing Avcısı** | Oltalama (Phishing) e-postalarını tespit etme yeteneğini test eden oyun tabanlı bir modül. | **Sosyal Mühendislik / Farkındalık** |
+| 🚨 | **Sızıntı Kontrolü** | Bir e-posta adresinin simüle edilmiş veri ihlallerinde yer alıp almadığını kontrol ederek veri güvenliği ciddiyetini gösterir. | **Veri İhlalleri Yönetimi** |
+| 🕵️‍♂️ | **Kripto Lab** | Base64 ve ROT13 gibi temel şifreleme/çözme mekanizmalarını uygulamalı olarak gösterir. | **Temel Kriptografi** |
+| 💉 | **SQL Injection (SQLi) Simülasyonu** | Güvenlik açığı bulunan bir giriş panelini kullanarak SQLi saldırılarının mantığını ve nasıl önleneceğini öğretir. | **Web Uygulama Güvenliği (Zafiyet)** |
+| 🕷️ | **XSS (Cross-Site Scripting) Simülasyonu** | Zararlı istemci tarafı kodun bir web sitesine nasıl enjekte edildiğini ve tarayıcıda kullanıcıya nasıl zarar verdiğini gösterir. | **Web Uygulama Güvenliği (Zafiyet)** |
+| 👣 | **Dijital Parmak İzi** | Kullanıcının IP adresi, işletim sistemi ve tarayıcı bilgileri gibi internette bıraktığı izleri analiz eder. | **Bilgi Toplama (Reconnaissance)** |
+
+
 
 ## 🛠️ Kurulum ve Çalıştırma
 
-Bu projeyi yerel makinenizde hızla kurmak ve çalıştırmak için aşağıdaki adımları izleyin.
+Bu projeyi yerel makinenizde hızla kurmak ve çalıştırmak için aşağıdaki adımları sırasıyla izleyin.
 
-### Önkoşullar
+### A. Önkoşullar
 
-Projenin çalışması için temel Python ve paket yöneticisi gereklidir:
+Projenin çalışması için temel Python ortamı gereklidir:
 
 * **Python 3.8+**
 * **pip** (Python paket yöneticisi)
+* **git** (Depoyu klonlamak için)
 
-### Adımlar
+### B. Kurulum Adımları
 
 1.  **Depoyu Klonlayın:**
-    Terminalinizi açın ve projeyi GitHub'dan yerel makinenize klonlayın:
+    Terminalinizi açın ve projeyi GitHub'dan yerel makinenize indirin:
 
     ```bash
     git clone [https://github.com/Quadraxx/CyberGuard.git](https://github.com/Quadraxx/CyberGuard.git)
@@ -38,31 +50,16 @@ Projenin çalışması için temel Python ve paket yöneticisi gereklidir:
     ```
 
 2.  **Gerekli Kütüphaneleri Yükleyin:**
-    Projenin temelini oluşturan **Flask** dahil olmak üzere gerekli tüm Python kütüphanelerini yükleyin:
+    Projenin temelini oluşturan **Flask** framework'ünü yükleyin:
 
     ```bash
     pip install flask
-    # Gerekli tüm kütüphaneler için (eğer bir requirements.txt dosyası varsa):
-    # pip install -r requirements.txt
     ```
+    *(Not: Projenin başka özel bağımlılıkları varsa, genellikle bu adımda `pip install -r requirements.txt` komutu kullanılır.)*
 
-3.  **Projeyi Başlatın:**
-    Flask uygulamasını çalıştırın:
+### C. Uygulamayı Başlatma
 
-    ```bash
-    python app.py
-    ```
+Flask uygulamasını yerel sunucunuzda çalıştırın:
 
-4.  **Erişim:**
-    Tarayıcınızı açın ve uygulamaya erişmek için aşağıdaki adrese gidin:
-
-    ```
-    [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-    ```
-
-## 👨‍💻 Geliştirici
-
-Bu proje, siber güvenlik eğitimine katkıda bulunmak amacıyla geliştirilmiştir.
-
-* **Geliştirici:** Hüseyin Akın
-* **Kurum:** Torul Meslek Yüksekokulu
+```bash
+python app.py
