@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4 fw-bold" style="color: #00ff41;">🛡️ CyberGuard Merkezi</h1>
+    <p class="lead text-secondary">Hüseyin Akın tarafından geliştirilen Siber Güvenlik Laboratuvarı</p>
+</div>
+
+<!-- Araçlar Kart Listesi -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    
+    <!-- 1. KART: ŞİFRE ANALİZİ -->
+    <div class="col">
+        <div class="card h-100 border-success bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">🔑</h1>
+                <h5 class="card-title text-success">Şifre Analizörü</h5>
+                <p class="card-text text-muted small">Şifrenin kırılması kaç yıl sürer? Entropi hesaplama.</p>
+                <a href="/tool-1-password" class="btn btn-outline-success w-100 mt-2">Analiz Et ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. KART: PHISHING OYUNU -->
+    <div class="col">
+        <div class="card h-100 border-warning bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">🎣</h1>
+                <h5 class="card-title text-warning">Phishing Avcısı</h5>
+                <p class="card-text text-muted small">Sahte e-postaları gerçeklerinden ayırt edebilir misin?</p>
+                <a href="/tool-2-phishing" class="btn btn-outline-warning w-100 mt-2">Oyuna Başla ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. KART: SIZINTI KONTROLÜ -->
+    <div class="col">
+        <div class="card h-100 border-danger bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">🚨</h1>
+                <h5 class="card-title text-danger">Sızıntı Kontrolü</h5>
+                <p class="card-text text-muted small">E-posta adresin Dark Web'e düştü mü? Simülasyon.</p>
+                <a href="/tool-3-leak" class="btn btn-outline-danger w-100 mt-2">Sorgula ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. KART: KRİPTO LAB -->
+    <div class="col">
+        <div class="card h-100 border-info bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">🕵️‍♂️</h1>
+                <h5 class="card-title text-info">Kripto Lab</h5>
+                <p class="card-text text-muted small">Base64 ve Sezar şifreleme yöntemleriyle mesaj gizle.</p>
+                <a href="/tool-4-crypto" class="btn btn-outline-info w-100 mt-2">Şifrele/Çöz ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. KART: SQL INJECTION (HACK) -->
+    <div class="col">
+        <div class="card h-100 border-danger bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">💉</h1>
+                <h5 class="card-title text-danger">SQL Injection</h5>
+                <p class="card-text text-muted small">Veritabanını kandırarak şifresiz giriş yapmayı dene.</p>
+                <a href="/tool-5-sqli" class="btn btn-outline-danger w-100 mt-2">Hacklemeye Başla ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. KART: XSS TESTİ (HACK) -->
+    <div class="col">
+        <div class="card h-100 border-warning bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">🕷️</h1>
+                <h5 class="card-title text-warning">XSS Testi</h5>
+                <p class="card-text text-muted small">Sitenin içine zararlı JavaScript kodu gömülebilir mi?</p>
+                <a href="/tool-6-xss" class="btn btn-outline-warning w-100 mt-2">Kod Enjekte Et ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. KART: DİJİTAL PARMAK İZİ (GİZLİLİK) -->
+    <div class="col mx-auto">
+        <div class="card h-100 border-primary bg-dark text-white shadow-sm">
+            <div class="card-body text-center">
+                <h1 class="display-4">👣</h1>
+                <h5 class="card-title text-primary">Beni Kim İzliyor?</h5>
+                <p class="card-text text-muted small">IP adresin, cihazın ve tarayıcın hakkında neler biliniyor?</p>
+                <a href="/tool-7-fingerprint" class="btn btn-outline-primary w-100 mt-2">Analiz Et ></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Mezuniyet Alanı -->
+<div class="text-center mt-5 mb-5 pt-4 border-top border-secondary">
+    <h3 class="text-success">🎉 Eğitimi Tamamladın mı?</h3>
+    <p class="text-muted">Tüm araçları denediysen, siber güvenlik temellerini atmışsın demektir.</p>
+    <button class="btn btn-lg btn-success" onclick="alert('🎓 TEBRİKLER!\n\nCyberGuard v1.0 Eğitimini başarıyla tamamladın.\n\nGeliştirici: Hüseyin Akın (Torul MYO)')">
+        🏆 Projeyi Bitir
+    </button>
+</div>
+{% endblock %}

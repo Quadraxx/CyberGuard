@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4 text-danger">💉 SQL Enjeksiyonu (SQLi) Testi</h2>
+        <p class="text-center text-muted">Bir web sitesini şifre bilmeden nasıl kandırabilirsin?</p>
+
+        <div class="card p-4 bg-dark border-danger text-white">
+            <h4 class="card-title text-center mb-4">🔐 Yönetici (Admin) Girişi</h4>
+            
+            <div class="mb-3">
+                <label class="form-label">Kullanıcı Adı:</label>
+                <input type="text" id="username" class="form-control bg-secondary text-white border-danger" placeholder="admin">
+                <small class="text-muted">İpucu: <code>' OR 1=1 --</code> yazmayı dene.</small>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Şifre:</label>
+                <input type="password" id="password" class="form-control bg-secondary text-white border-danger" placeholder="*****">
+            </div>
+
+            <button onclick="tryLogin()" class="btn btn-danger w-100">Giriş Yap 🔓</button>
+        </div>
+
+        <!-- Canlı Sorgu Ekranı (Eğitim İçin) -->
+        <div id="terminalArea" class="mt-4 p-3 bg-black border border-secondary rounded font-monospace d-none">
+            <h6 class="text-success">🖥️ SQL Sunucu Terminali:</h6>
+            <hr class="border-secondary">
+            <p class="text-white mb-1">Çalıştırılan Sorgu:</p>
+            <code id="executedQuery" class="d-block p-2 bg-secondary text-warning rounded mb-3">...</code>
+            
+            <p class="text-white mb-1">Sonuç:</p>
+            <div id="loginResult" class="fw-bold">...</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function tryLogin() {
+        let u = document.getElementById("username").value;
+        let p = document.getElementById("password").value;
+
+        fetch('/api/sqli-login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ username: u, password: p })
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("terminalArea").classList.remove("d-none");
+            document.getElementById("executedQuery").innerText = data.executed_query;
+            
+            let resultDiv = document.getElementById("loginResult");
+            resultDiv.innerText = data.message;
+            
+            if(data.success) {
+                resultDiv.className = "alert alert-success mt-2";
+            } else {
+                resultDiv.className = "alert alert-danger mt-2";
+            }
+        });
+    }
+</script>
+{% endblock %}

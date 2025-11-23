@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="text-center mb-4 text-warning">🕷️ XSS (Cross-Site Scripting) Testi</h2>
+        <p class="text-center text-muted">Bir web sitesine "yazı" yerine "kod" yedirebilir misin?</p>
+
+        <!-- Yorum Yapma Alanı -->
+        <div class="card p-4 bg-dark border-warning text-white mb-4">
+            <h5 class="text-warning">📝 Ziyaretçi Defteri</h5>
+            <div class="mb-3">
+                <label class="form-label">Mesajını Bırak:</label>
+                <div class="input-group">
+                    <input type="text" id="userComment" class="form-control bg-secondary text-white border-warning" placeholder="Merhaba Dünya!">
+                    <button onclick="postComment()" class="btn btn-warning text-dark fw-bold">Gönder 🚀</button>
+                </div>
+                <small class="text-muted d-block mt-2">
+                    İpucu: <code>&lt;img src=x onerror=alert('HACKED')&gt;</code> yazmayı dene.
+                </small>
+            </div>
+        </div>
+
+        <!-- Yorumların Listelendiği Alan -->
+        <div class="card bg-black border-secondary">
+            <div class="card-header text-white border-bottom border-secondary">
+                Son Yorumlar
+            </div>
+            <div class="card-body" id="commentsArea">
+                <p class="text-muted fst-italic">Henüz yorum yok...</p>
+            </div>
+        </div>
+
+        <!-- Bilgi Kutusu -->
+        <div class="alert alert-info mt-4">
+            <strong>Nasıl Çalışır?</strong>
+            Eğer bir site senin yazdığın girdiyi temizlemeden (sanitize etmeden) ekrana basarsa, tarayıcı bunu yazı değil, <strong>komut</strong> zanneder. 
+        </div>
+    </div>
+</div>
+
+<script>
+    function postComment() {
+        let comment = document.getElementById("userComment").value;
+
+        fetch('/api/xss-comment', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ comment: comment })
+        })
+        .then(res => res.json())
+        .then(data => {
+            let area = document.getElementById("commentsArea");
+            
+            // XSS AÇIĞI BURADA!
+            // Normalde "innerText" kullanmalıyız. 
+            // Ama biz "innerHTML" kullanarak açığı simüle ediyoruz.
+            // Böylece tarayıcı <script> veya <img> etiketlerini çalıştıracak.
+            
+            let newCommentHtml = `
+                <div class="p-2 border-bottom border-secondary text-white">
+                    <strong>Misafir:</strong> ${data.original_comment}
+                </div>
+            `;
+            
+            // Eğer ilk yorumsa "Henüz yorum yok" yazısını sil
+            if(area.innerHTML.includes("Henüz yorum yok")) {
+                area.innerHTML = newCommentHtml;
+            } else {
+                area.innerHTML += newCommentHtml;
+            }
+        });
+    }
+</script>
+{% endblock %}

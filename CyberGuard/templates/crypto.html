@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="text-center mb-4" style="color: #00ff41;">🕵️‍♂️ Kripto Laboratuvarı</h2>
+        <p class="text-center text-muted">Mesajlarını şifrele, arkadaşına gönder, o da gelip burada çözsün!</p>
+
+        <div class="card p-4 bg-dark border-success text-white">
+            
+            <div class="mb-3 text-center">
+                <label class="form-label text-success">Algoritma Seç:</label>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="algo" id="algoBase64" value="base64" checked>
+                    <label class="btn btn-outline-success" for="algoBase64">Base64 (Web Standardı)</label>
+
+                    <input type="radio" class="btn-check" name="algo" id="algoRot13" value="rot13">
+                    <label class="btn btn-outline-success" for="algoRot13">ROT13 (Sezar Şifresi)</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label class="form-label">Giriş Metni:</label>
+                    <textarea id="inputText" class="form-control bg-secondary text-white" rows="5" placeholder="Buraya yaz..."></textarea>
+                </div>
+
+                <div class="col-md-2 d-flex flex-column justify-content-center align-items-center gap-2">
+                    <button onclick="processCrypto('encrypt')" class="btn btn-success w-100">
+                        Şifrele ➡️
+                    </button>
+                    <button onclick="processCrypto('decrypt')" class="btn btn-outline-light w-100">
+                        ⬅️ Çöz
+                    </button>
+                </div>
+
+                <div class="col-md-5">
+                    <label class="form-label">Sonuç:</label>
+                    <textarea id="outputText" class="form-control bg-secondary text-warning fw-bold" rows="5" readonly></textarea>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function processCrypto(action) {
+        let text = document.getElementById("inputText").value;
+        let method = document.querySelector('input[name="algo"]:checked').value;
+
+        // Eğer 'Çöz' butonuna basıldıysa ve giriş boşsa, sonucu girişe atayıp ters işlem yapalım (Kullanıcı kolaylığı)
+        if (action === 'decrypt' && text === "") {
+            text = document.getElementById("outputText").value;
+        }
+
+        fetch('/api/crypto', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ text: text, action: action, method: method })
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("outputText").value = data.result;
+        });
+    }
+</script>
+{% endblock %}

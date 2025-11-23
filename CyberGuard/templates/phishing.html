@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="text-center mb-4 text-warning">🎣 Phishing (Oltalama) Avcısı</h2>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-white">Skor: <span id="score" class="text-success">0</span></h4>
+            <button onclick="loadQuestion()" class="btn btn-sm btn-outline-light">Sıradaki Soru 🔄</button>
+        </div>
+
+        <div class="card bg-white text-dark mb-4" style="border-radius: 10px; overflow: hidden;">
+            <div class="card-header bg-light border-bottom">
+                <small class="text-muted">📨 Gelen Kutusu</small>
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <strong>Gönderen:</strong> <span id="emailSender" class="text-primary">...</span>
+                </div>
+                <div class="mb-3">
+                    <strong>Konu:</strong> <span id="emailSubject" class="fw-bold">...</span>
+                </div>
+                <hr>
+                <div class="p-3 bg-light border rounded">
+                    <p id="emailBody">...</p>
+                    <div class="mt-3">
+                        <span class="badge bg-secondary">Ek / Link:</span>
+                        <a href="#" id="emailLink" class="text-decoration-underline text-danger fw-bold" onclick="return false;">...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-2" id="actionButtons">
+            <div class="col-6">
+                <button onclick="submitAnswer(true)" class="btn btn-danger w-100 py-3 fw-bold">
+                    ⚠️ BU BİR TUZAK!
+                </button>
+            </div>
+            <div class="col-6">
+                <button onclick="submitAnswer(false)" class="btn btn-success w-100 py-3 fw-bold">
+                    ✅ GÜVENLİ
+                </button>
+            </div>
+        </div>
+
+        <div id="resultArea" class="mt-4 p-3 rounded d-none text-center">
+            <h3 id="resultTitle" class="fw-bold"></h3>
+            <p id="resultReason" class="lead"></p>
+            <button onclick="loadQuestion()" class="btn btn-primary mt-2">Sonraki Soruya Geç >></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentQuestionId = null;
+    let score = 0;
+
+    function loadQuestion() {
+        // Sonuç alanını gizle, butonları göster
+        document.getElementById("resultArea").classList.add("d-none");
+        document.getElementById("actionButtons").classList.remove("d-none");
+
+        fetch('/api/get-phishing-question')
+            .then(res => res.json())
+            .then(data => {
+                currentQuestionId = data.id;
+                document.getElementById("emailSender").innerText = data.sender;
+                document.getElementById("emailSubject").innerText = data.subject;
+                document.getElementById("emailBody").innerText = data.body;
+                document.getElementById("emailLink").innerText = data.link;
+            });
+    }
+
+    function submitAnswer(userGuess) { // userGuess: True (Tuzak) veya False (Güvenli)
+        fetch('/api/check-phishing-answer', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ id: currentQuestionId, guess: userGuess })
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Butonları gizle, sonucu göster
+            document.getElementById("actionButtons").classList.add("d-none");
+            let resultDiv = document.getElementById("resultArea");
+            resultDiv.classList.remove("d-none");
+
+            let resultTitle = document.getElementById("resultTitle");
+            let resultReason = document.getElementById("resultReason");
+
+            if(data.correct) {
+                resultDiv.className = "mt-4 p-3 rounded text-center bg-success text-white";
+                resultTitle.innerText = "🎉 TEBRİKLER! Doğru Tespit.";
+                score += 10;
+                document.getElementById("score").innerText = score;
+            } else {
+                resultDiv.className = "mt-4 p-3 rounded text-center bg-danger text-white";
+                resultTitle.innerText = "💀 YANLIŞ! Hacklendin.";
+            }
+
+            resultReason.innerText = data.reason;
+        });
+    }
+
+    // Sayfa açılınca ilk soruyu yükle
+    window.onload = loadQuestion;
+</script>
+{% endblock %}

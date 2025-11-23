@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4 text-danger">🚨 Hacklendim mi? (Leak Check)</h2>
+        
+        <div class="card p-4 bg-dark border-danger text-white">
+            <label class="form-label">E-posta Adresini Gir:</label>
+            <div class="input-group mb-3">
+                <input type="email" id="emailInput" class="form-control" placeholder="ornek@email.com">
+                <button onclick="checkLeak()" class="btn btn-danger">SORGULA</button>
+            </div>
+            <small class="text-muted">*Sadece simülasyon amaçlıdır. (Test için: test@gmail.com)</small>
+        </div>
+
+        <div id="resultArea" class="mt-4 d-none">
+            <div id="safeAlert" class="alert alert-success d-none">
+                <h4 class="alert-heading">✅ Temiz!</h4>
+                <p>Bu e-posta adresi veritabanımızdaki herhangi bir sızıntıda bulunamadı.</p>
+            </div>
+
+            <div id="dangerAlert" class="alert alert-danger d-none">
+                <h4 class="alert-heading">⚠️ DİKKAT! BİLGİLERİN SIZDIRILMIŞ!</h4>
+                <hr>
+                <p><strong>Sızıntı Kaynağı:</strong> <span id="leakSource"></span></p>
+                <p><strong>Sızan Veriler:</strong> <span id="leakData"></span></p>
+                <p><strong>Risk Seviyesi:</strong> <span id="leakRisk" class="badge bg-dark"></span></p>
+                <hr>
+                <button class="btn btn-sm btn-light">Hemen Şifreni Değiştir!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkLeak() {
+        let email = document.getElementById("emailInput").value;
+        
+        fetch('/api/check-leak', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email: email})
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("resultArea").classList.remove("d-none");
+            document.getElementById("safeAlert").classList.add("d-none");
+            document.getElementById("dangerAlert").classList.add("d-none");
+
+            if(data.leaked) {
+                document.getElementById("dangerAlert").classList.remove("d-none");
+                document.getElementById("leakSource").innerText = data.info.source;
+                document.getElementById("leakData").innerText = data.info.data;
+                document.getElementById("leakRisk").innerText = data.info.risk;
+            } else {
+                document.getElementById("safeAlert").classList.remove("d-none");
+            }
+        });
+    }
+</script>
+{% endblock %}

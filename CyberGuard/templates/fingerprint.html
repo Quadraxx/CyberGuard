@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="text-center mb-4 text-info">🕵️‍♂️ Beni Kim İzliyor? (Dijital Parmak İzi)</h2>
+        <p class="text-center text-muted">Bir web sitesine girdiğin an, arkanda bıraktığın izler.</p>
+
+        <!-- Ana Bilgi Kartı -->
+        <div class="card bg-dark border-info text-white mb-4">
+            <div class="card-header bg-info text-dark fw-bold">
+                📡 Tespit Edilen Cihaz Bilgileri
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <h1 class="display-4">💻</h1>
+                        <h5 class="text-info">İşletim Sistemi</h5>
+                        <p class="lead fw-bold">{{ info.os }}</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h1 class="display-4">🌐</h1>
+                        <h5 class="text-info">Tarayıcı</h5>
+                        <p class="lead fw-bold">{{ info.browser }} v{{ info.version }}</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h1 class="display-4">📍</h1>
+                        <h5 class="text-info">IP Adresi</h5>
+                        <p class="lead fw-bold">{{ info.ip }}</p>
+                    </div>
+                </div>
+                <hr class="border-info">
+                
+                <!-- Detay Tablosu -->
+                <table class="table table-dark table-hover table-bordered border-info mt-3">
+                    <tr>
+                        <th class="text-info">Dil Tercihi:</th>
+                        <td>{{ info.language }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-info">Ekran Çözünürlüğü:</th>
+                        <td id="screenRes">Hesaplanıyor...</td>
+                    </tr>
+                    <tr>
+                        <th class="text-info">Renk Derinliği:</th>
+                        <td id="colorDepth">Hesaplanıyor...</td>
+                    </tr>
+                    <tr>
+                        <th class="text-info">Çerezler (Cookies) Açık mı?</th>
+                        <td id="cookieEnabled">Hesaplanıyor...</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ham Veri (User Agent) -->
+        <div class="alert alert-secondary bg-black text-secondary border-secondary font-monospace" style="word-break: break-all;">
+            <strong>Ham Veri (User-Agent):</strong> <br>
+            {{ info.raw_agent }}
+        </div>
+        
+        <div class="alert alert-warning mt-3">
+            <strong>Ders:</strong> Gizli modda (Incognito) olsan bile, işletim sistemin, ekran boyutun ve tarayıcı sürümün birleştiğinde seni "eşsiz" kılan bir parmak izi oluşturur.
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Sunucunun bilemediği, sadece Tarayıcının bildiği bilgileri JS ile alıyoruz
+    document.getElementById("screenRes").innerText = window.screen.width + " x " + window.screen.height + " Piksel";
+    document.getElementById("colorDepth").innerText = window.screen.colorDepth + " Bit";
+    
+    let cookieStatus = navigator.cookieEnabled ? "✅ Evet, İzlenebilir" : "❌ Hayır, Kapalı";
+    document.getElementById("cookieEnabled").innerText = cookieStatus;
+</script>
+{% endblock %}
